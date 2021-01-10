@@ -103,6 +103,16 @@ function findInProducts($products, $id) {
 }
 
 /**
+ * @return array
+ */
+function getCartContent(): array {
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+    return $_SESSION['cart'];
+}
+
+/**
  * Cette fonction va ajouter un produit au panier. Nous ne retiendrons que l'id et la quantité, vu que toutes les informations sont disponibles rapidement à l'aide de l'id.
  * Nous aurions également pu passer un id plutôt qu'un product entier, pour simplifier la fonction.
  * Je ne l'ai pas fait au cas où l'on souhaiterais passer d'autres données au panier (ce qui se discute largement ;) )
@@ -112,10 +122,7 @@ function findInProducts($products, $id) {
  * @return int
  */
 function addToCart($product): int {
-    // Si le panier n'existe pas, on le crée, mais vide
-    if (empty($_SESSION['cart'])) {
-        $_SESSION['cart'] = [];
-    }
+    getCartContent();
 
     $id = $product['id'];
 
@@ -123,7 +130,45 @@ function addToCart($product): int {
     if (!isset($_SESSION['cart'][$id])) {
         $_SESSION['cart'][$id] = 0;
     }
-    $_SESSION['cart'][$id]++; // On ajouter le produit au panier (dans les faits, on augmente la quantité de l'entrée ayant pour id $id)
+    $_SESSION['cart'][$id]++; // On ajoute le produit au panier (dans les faits, on augmente la quantité de l'entrée ayant pour id $id)
 
     return $_SESSION['cart'][$id];
+}
+
+/**
+ * Cette fonction va enlever un produit du panier. Nous ne retiendrons que l'id et la quantité, vu que toutes les informations sont disponibles rapidement à l'aide de l'id.
+ * Nous aurions également pu passer un id plutôt qu'un product entier, pour simplifier la fonction.
+ * Je ne l'ai pas fait au cas où l'on souhaiterais passer d'autres données au panier (ce qui se discute largement ;) )
+ * 
+ * @var array $product
+ * 
+ * @return int
+ */
+function removeOneFromCart($product): int {
+    getCartContent();
+
+    $id = $product['id'];
+
+    // Si on n'a pas cet élément dans le panier, ne touche pas au panier, mais on renvoie 0
+    if (!isset($_SESSION['cart'][$id])) {
+        return 0;
+    }
+    $_SESSION['cart'][$id]--; // On enlève un produit du panier (dans les faits, on diminue la quantité de l'entrée ayant pour id $id)
+
+    // Si on atteint 0 unité, on peut supprimer l'entrée du panier, nous n'avons plus besoin de l'y stocker.
+    if ($_SESSION['cart'][$id] == 0) {
+        unset($_SESSION['cart'][$id]);
+        return 0;
+    }
+
+    return $_SESSION['cart'][$id];
+}
+
+/**
+ * Vide complètement le panier. Les deux appels à getCartContent() servent ici à s'assurer que le panier existe, tant avant qu'après la suppression
+ */
+function emptyCart(): void {
+    getCartContent();
+    unset($_SESSION['cart']);
+    getCartContent();
 }

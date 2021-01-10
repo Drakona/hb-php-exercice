@@ -1,12 +1,21 @@
 <?php
     session_start();
 
+    // Si aucun titre de page n'est défini avant l'include de ce fichier, on met un titre par défaut (voir l'utilisation de cette variable un peu plus bas, dans la balise <title>)
+    if (!isset($pageTitle)) {
+        $pageTitle = 'Les beaux bonnets !';
+    }
+
     // On peut inclure les fichiers php que l'on souhaite où l'on veut,
     // s'ils n'affichent rien directement (sinon, il faut les inclure là où l'on souhaite afficher leur contenu ;) )
     // L'important est que leur contenu soit inclu avant qu'on en ait besoin dans ce fichier (par exemple, on doit avoir inclu la variable $mesProduits avant de nous en servir dans cette page)
     // Par habitude, on importe d'abord les variables (qui pourraient être utilisées par les fonctions), puis les fonctions.
     require_once('vars.php');
     require_once('functions.php');
+
+    /**
+     * Section pour gérer la connexion 
+     */
 
     $login = null;
     // On garde en mémoire si une erreur se trouve dans le formulaire
@@ -19,7 +28,12 @@
         // Si un champ "password" a été posté dans un formulaire, mais est vide ou ne correspond pas à celui attendu
         if (isset($_POST['password'])) {
             // S'il est vide, ou ne correspond pas à celui attendu, on affichera une erreur
-            if (empty($_POST['password']) || (!empty($_POST['password']) && $_POST['password'] != $password)) {
+            if (empty($_POST['password']) 
+                || (
+                    !empty($_POST['password']) 
+                    && $_POST['password'] != $password
+                )
+            ) {
                 $loginError = true; // On sait qu'il y a eu une erreur lors d'une tentative de connexion
                 $loginMessages[] = 'Mot de passe incorrect'; // On ajoute un message
             }
@@ -55,10 +69,14 @@
         <!-- Ici, le style dédié au formulaire de connexion. Notez le chemin : même si on est dans un fichier inclu (qui est dans le dossier includes), ce qui compte, c'est le chemin depuis le script qui l'appelle (c'est aussi pour ça que l'on met toutes nos pages à la racine de notre projet) -->
         <link rel="stylesheet" href="css/login.css">
         <title>
-            Les beaux bonnets !
+            <?php
+                // Ici, on appelle le titre de notre page, défini soit au début de ce fichier, soit avant l'appel du include 
+                echo $pageTitle;
+            ?>
         </title>
     </head>
     <body>
+    <!-- Menu (navbar) tiré tout droit de la doc de Bootstrap. On l'adapte simplement à notre besoin. -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Les beaux bonnets</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -1,4 +1,7 @@
-<?php include 'includes/header.php'; ?>
+<?php
+    // Sur chacune des pages, on inclue le header et le footer, et on met le code spécifique à la page entre les deux.
+    include 'includes/header.php';
+?>
 <div class="row">
 <?php
     // Nous avons ici 4 méthodes possibles (il y en a sûrement d'autres)
@@ -42,7 +45,7 @@
 
     // array_slice() est la méthode prenant le moins de lignes et la plus sûre (pas besoin de se soucier des index)
     $produits = array_slice($mesProduits, 0, 3);
-    foreach($produits as $produit) {
+    foreach ($produits as $key => $produit) {
         cardProduit($produit);
     }
 ?>

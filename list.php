@@ -1,4 +1,8 @@
-<?php include 'includes/header.php'; ?>
+<?php
+    //on change le titre de notre page. La variable $pageTitle est appelée dans header.php. 
+    $pageTitle = 'Liste des bonnets'; 
+    include 'includes/header.php';
+?>
     <!-- La balise table défini le cadre du table, tr une ligne et th des cellules de titre (affiché en gras et avec du texte centré par défaut) -->
     <table>
         <tr>
@@ -25,11 +29,5 @@
             }
         ?>
     </table>
-
-    <?php
-    foreach($mesProduits as $produit) {
-        echo '<img src="http://localhost/hb-php/images/ours.jpg">';
-    }
-    ?>
 
 <?php include 'includes/footer.php'; ?>

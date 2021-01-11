@@ -14,7 +14,7 @@
     require_once('functions.php');
 
     /**
-     * Section pour gérer la connexion 
+     * Section pour gérer la connexion
      */
 
     $login = null;
@@ -28,9 +28,9 @@
         // Si un champ "password" a été posté dans un formulaire, mais est vide ou ne correspond pas à celui attendu
         if (isset($_POST['password'])) {
             // S'il est vide, ou ne correspond pas à celui attendu, on affichera une erreur
-            if (empty($_POST['password']) 
+            if (empty($_POST['password'])
                 || (
-                    !empty($_POST['password']) 
+                    !empty($_POST['password'])
                     && $_POST['password'] != $password
                 )
             ) {
@@ -50,7 +50,7 @@
         // header('Location: index.php');
         // Mais notre gestion des messages ne servirait plus ;) (on ne les afficherait jamais à cause de la redirection)
         $loginMessages[] = 'Vous êtes maintenant connecté.e';
-        $loginError = false; 
+        $loginError = false;
     }
 
     // Si la session est définie et qu'on a un login, on met ce dernier dans une variable qu'on pourra utiliser dans le menu et dans la page de connexion (login.php)
@@ -65,12 +65,14 @@
 
         <!--Fontawesome CDN-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-        
+
         <!-- Ici, le style dédié au formulaire de connexion. Notez le chemin : même si on est dans un fichier inclu (qui est dans le dossier includes), ce qui compte, c'est le chemin depuis le script qui l'appelle (c'est aussi pour ça que l'on met toutes nos pages à la racine de notre projet) -->
         <link rel="stylesheet" href="css/login.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
         <title>
             <?php
-                // Ici, on appelle le titre de notre page, défini soit au début de ce fichier, soit avant l'appel du include 
+                // Ici, on appelle le titre de notre page, défini soit au début de ce fichier, soit avant l'appel du include
                 echo $pageTitle;
             ?>
         </title>

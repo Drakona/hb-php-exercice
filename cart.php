@@ -14,7 +14,7 @@ $productsInCart = getCartContent();
     <?php
         // On va noter le total du panier dans cette variable et le calculer au fur et à mesure qu'on avance dans l'affichage du tableau. On pourrait également faire une fonction qui se chargerait du calcul.
         $totalCart = 0.0;
-        // Nous n'avons que des id et des quantités, on va donc chercher notre produit à chaque itération de la boucle. 
+        // Nous n'avons que des id et des quantités, on va donc chercher notre produit à chaque itération de la boucle.
         foreach ($productsInCart as $id => $quantity) {
             $product = findInProducts($mesProduits, $id);
 
@@ -25,28 +25,29 @@ $productsInCart = getCartContent();
 
             $totalCart += $product['price'] * $quantity;
 
-            // On affiche ensuite les différentes entrées du panier
-    ?>
-        <tr>
-            <td>
-                <?php echo $product['name']; ?>
-            </td>
-            <td>
-                <?php echo number_format($product['price'], 2, ',', ' '); ?>€
-            </td>
-            <td>
-                <a href="cart-remove.php?id=<?php echo $product['id']; ?>">
-                    <i class="fa fa-minus"></i>
-                </a>
-                <?php echo $quantity; ?>
-                <a href="cart-add.php?id=<?php echo $product['id']; ?>">
-                    <i class="fa fa-plus"></i>
-                </a>
-            </td>
-            <td>
-                <?php echo number_format($product['price'] * $quantity, 2, ',', ' '); ?>€
-            </td>
-        </tr>
+            // On affiche ensuite les différentes entrées du panier?>
+    <tr>
+        <td>
+            <?= $product['name']; ?>
+        </td>
+        <td>
+            <?= number_format($product['price'], 2, ',', ' '); ?>€
+        </td>
+        <td>
+            <a
+                href="cart-remove.php?id=<?php echo $product['id']; ?>">
+                <i class="fa fa-minus"></i>
+            </a>
+            <?php echo $quantity; ?>
+            <a
+                href="cart-add.php?id=<?php echo $product['id']; ?>">
+                <i class="fa fa-plus"></i>
+            </a>
+        </td>
+        <td>
+            <?php echo number_format($product['price'] * $quantity, 2, ',', ' '); ?>€
+        </td>
+    </tr>
     <?php
         }
 
@@ -54,11 +55,12 @@ $productsInCart = getCartContent();
     ?>
     <tr>
         <td colspan="3" align="right">Total :</td>
-        <td><?php echo number_format($totalCart, 2, ',', ' '); ?>€</td>
+        <td><?php echo number_format($totalCart, 2, ',', ' '); ?>€
+        </td>
     </tr>
 </table>
 
 <!-- Ajout d'un bouton de vidage du panier -->
 <a href="cart-empty.php">Vider le panier</a>
 
-<?php include 'includes/footer.php'; ?>
+<?php include 'includes/footer.php';

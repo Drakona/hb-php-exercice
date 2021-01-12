@@ -133,8 +133,6 @@ function addToCart($product): int
 
     $id = $product['id'];
 
-    $cart = $_SESSION['cart'];
-
     // Si on n'a pas cet élément dans le panier, on initialise l'entrée du tableau $_SESSION['cart'] correspondante.
     if (!isset($_SESSION['cart'][$id])) {
         $_SESSION['cart'][$id] = 0;

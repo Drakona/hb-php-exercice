@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 class Cart
 {
@@ -21,7 +22,7 @@ class Cart
     public function add(int $id, int $quantity = 1): int
     {
         if (!isset($this->content[$id])) {
-            // On n'a aucun exemplaire de ce produit dans le tableau, on ajoute juste $quantity produits
+            // On n'a aucun exemplaire de ce produit dans le tableau, on crée une nouvelle entrée et on ajoute $quantity produits
             $this->content[$id] = $quantity;
         } else {
             // On a déjà ce produit, on en ajoute juste la quantité demandée
@@ -119,7 +120,7 @@ class Cart
     }
 
     // Ici, on a tenté de récupérer le montant total du panier.
-    // Cette méthode fonctionne, mais est affreusement compliqué,
+    // Cette méthode fonctionne, mais est affreusement compliqué (boucles imbriquées),
     // et on ne va donc pas garder ce code.
     // public function computeTotal(array $beanies)
     // {

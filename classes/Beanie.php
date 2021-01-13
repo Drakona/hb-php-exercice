@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Des exemples d'utilisation de la classe Beanie:
  * $b = new Beanie(); // On crée un nouvel objet (selon la classe) Beanie. Ce new appelle le constructeur

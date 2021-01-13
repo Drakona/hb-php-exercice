@@ -1,7 +1,7 @@
 <?php
 include 'includes/header.php';
 
-$productsInCart = getCartContent();
+$productsInCart = $cart->getContent();
 ?>
 
 <table class="table table-striped">

@@ -3,9 +3,8 @@
 
     //Par exemple, on peut appeler le lien : cart-add.php?id=666 pour ajouter le bonnet ayant pour id 666.
     if (isset($_GET['id'])) {
-        $product = findInProducts($mesProduits, $_GET['id']);
-        // Ici, je choisis de passer un produit tout entier, mais j'aurais aussi bien pu me contenter de passer l'id, vu que c'est le seul attribut que j'utilise.
-        addToCart($product);
+        // On passe l'id de notre objet, puisque (pour le moment), c'est la seule information que l'on utilise
+        $cart->add($_GET['id']);
     }
 
     header('Location: cart.php');

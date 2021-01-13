@@ -18,44 +18,43 @@ $productsInCart = getCartContent();
         foreach ($productsInCart as $id => $quantity) {
             $product = findInProducts($mesProduits, $id);
 
-            // Dans mon cas, j'ai un id vide en session, dû à une erreur de saisie. J'en profite pour vous montrer que vous pouvez sauter une itération d'une boucle avec le mot-clé continue (qui dit littéralement de passer à l'itération suivante).
+            // Dans mon cas, j'ai un id vide en session, dû à une erreur de saisie.
             if (empty($id) || empty($product)) {
-                continue;
+                continue; // J'en profite pour vous montrer que vous pouvez sauter une itération d'une boucle avec le mot-clé continue (qui dit littéralement de passer à l'itération suivante).
             }
 
-            $totalCart += $product['price'] * $quantity;
+            $totalCart += $product->price * $quantity;
 
             // On affiche ensuite les différentes entrées du panier?>
     <tr>
         <td>
-            <?= $product['name']; ?>
+            <?= $product->name; ?>
         </td>
         <td>
-            <?= number_format($product['price'], 2, ',', ' '); ?>€
+            <?= number_format($product->price, 2, ',', ' '); ?>€
         </td>
         <td>
-            <a
-                href="cart-remove.php?id=<?php echo $product['id']; ?>">
+            <a href="cart-remove.php?id=<?php echo $product->id; ?>">
                 <i class="fa fa-minus"></i>
             </a>
             <?php echo $quantity; ?>
-            <a
-                href="cart-add.php?id=<?php echo $product['id']; ?>">
+            <a href="cart-add.php?id=<?php echo $product->id; ?>">
                 <i class="fa fa-plus"></i>
             </a>
         </td>
         <td>
-            <?php echo number_format($product['price'] * $quantity, 2, ',', ' '); ?>€
+            <?php echo number_format($product->price * $quantity, 2, ',', ' '); ?>€
         </td>
     </tr>
     <?php
         }
 
         // On affiche ensuite le montant total du panier
+        $cart->setTotal($totalCart);
     ?>
     <tr>
         <td colspan="3" align="right">Total :</td>
-        <td><?php echo number_format($totalCart, 2, ',', ' '); ?>€
+        <td><?php echo number_format($cart->total, 2, ',', ' '); ?>€
         </td>
     </tr>
 </table>

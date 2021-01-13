@@ -1,6 +1,6 @@
 <?php
     include 'includes/header.php';
 
-    emptyCart();
+    $cart->empty();
 
     header('Location: cart.php');

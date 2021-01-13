@@ -1,6 +1,43 @@
 <?php
 include 'includes/header.php';
 
+// Par défaut, que ce soit pour ajouter ou supprimer, on ne va ajouter / enlever qu'un élément
+$quantity = 1;
+
+// On peut prévoir dans l'url de pouvoir en ajouter plus (ne serait-ce que pour tester par exemple).
+if (isset($_GET['quantity'])) {
+    $quantity = intval($_GET['quantity']); // intval() va convertir une chaine de caractère en un entier
+}
+
+//Par exemple, on peut appeler le lien : cart.php?add=666 pour ajouter le bonnet ayant pour id 666.
+if (isset($_GET['add'])) {
+    // On passe l'id de notre objet, puisque (pour le moment), c'est la seule information que l'on utilise
+    // Pour gérer l'ajout et la suppression sur la même page, on va nommer nos paramètres différemment
+    $cart->add($_GET['add'], $quantity);
+
+    // On redirige vers la page du panier (sans paramètres), afin de nettoyer l'url et éviter des manipulations non désirées (le rechargement du panier qui ré-ajouterait des produits au panier par exemple)
+    header('Location: cart.php');
+}
+
+//Par exemple, on peut appeler le lien : cart.php?remove=666 pour enlever un bonnet ayant pour id 666.
+if (isset($_GET['remove'])) {
+    // On passe l'id de notre objet, puisque (pour le moment), c'est la seule information que l'on utilise
+    // Pour gérer l'ajout et la suppression sur la même page, on va nommer nos paramètres différemment
+    $cart->remove($_GET['remove'], $quantity);
+
+    // On redirige vers la page du panier (sans paramètres), afin de nettoyer l'url et éviter des manipulations non désirées (le rechargement du panier qui re-supprimerait des produits du panier par exemple)
+    header('Location: cart.php');
+}
+
+//Par exemple, on peut appeler le lien : cart.php?empty pour vider le panier complètement.
+if (isset($_GET['empty'])) {
+    // On appelle simplement la méthode chargée de vider le panier
+    $cart->empty();
+
+    // On redirige vers la page du panier (sans paramètres), afin de nettoyer l'url et éviter des manipulations non désirées (le rechargement du panier qui re-viderait le panier par exemple)
+    header('Location: cart.php');
+}
+
 $productsInCart = $cart->getContent();
 ?>
 
@@ -34,11 +71,11 @@ $productsInCart = $cart->getContent();
             <?= number_format($product->price, 2, ',', ' '); ?>€
         </td>
         <td>
-            <a href="cart-remove.php?id=<?php echo $product->id; ?>">
+            <a href="cart.php?remove=<?php echo $product->id; ?>">
                 <i class="fa fa-minus"></i>
             </a>
             <?php echo $quantity; ?>
-            <a href="cart-add.php?id=<?php echo $product->id; ?>">
+            <a href="cart.php?add=<?php echo $product->id; ?>">
                 <i class="fa fa-plus"></i>
             </a>
         </td>

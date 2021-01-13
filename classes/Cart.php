@@ -14,6 +14,15 @@ class Cart
     public $total = 0.0;
 
     /**
+     * Quand on fait $cart = new Cart();
+     * on s'assure de récupérer l'information depuis la session (sans ça, notre panier est vide)
+     */
+    public function __construct()
+    {
+        $this->content = $_SESSION['cart'];
+    }
+
+    /**
      * Ajoute $quantity exemplaires d'un produit au panier, identifié par son id $id
      *
      * @param int $id
@@ -64,7 +73,7 @@ class Cart
         $this->saveCart();
 
         if (isset($this->content[$id])) {
-            return isset($this->content[$id]);
+            return $this->content[$id];
         }
 
         return 0;

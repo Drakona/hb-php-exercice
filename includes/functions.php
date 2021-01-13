@@ -53,7 +53,7 @@ function afficheProduit(Beanie $produit)
             '.$produit->description.'
         </td>
         <td>
-            <a href="cart-add.php?id='.$produit->id.'">Ajouter au panier</a>
+            <a href="cart.php?add='.$produit->id.'">Ajouter au panier</a>
         </td>
     </tr>';
 }

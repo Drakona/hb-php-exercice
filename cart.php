@@ -97,6 +97,6 @@ $productsInCart = $cart->getContent();
 </table>
 
 <!-- Ajout d'un bouton de vidage du panier -->
-<a href="cart-empty.php">Vider le panier</a>
+<a href="cart.php?empty">Vider le panier</a>
 
 <?php include 'includes/footer.php';

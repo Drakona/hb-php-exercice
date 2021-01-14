@@ -19,6 +19,9 @@ class Cart
      */
     public function __construct()
     {
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
         $this->content = $_SESSION['cart'];
     }
 
@@ -27,6 +30,8 @@ class Cart
      *
      * @param int $id
      * @param int $quantity
+     *
+     * @return int
      */
     public function add(int $id, int $quantity = 1): int
     {
@@ -52,7 +57,7 @@ class Cart
     }
 
     /**
-     * Enlève $quantity exemplaires d'un produit au panier, identifié par son id $id
+     * Enlève $quantity exemplaires d'un produit du panier, identifié par son id $id
      *
      * @param int $id
      * @param int $quantity

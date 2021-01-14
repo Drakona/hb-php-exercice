@@ -11,6 +11,9 @@
     $beanie0->description = $description;
     $beanie0->image = 'laine.webp';
     $beanie0->id = 42;
+    $beanie0->sizes = [
+        'S', 'M'
+    ];
 
     $beanie1 = new Beanie();
     $beanie1->name = 'Bonnet en laine bio';
@@ -18,6 +21,9 @@
     $beanie1->description = $description;
     $beanie1->image = 'ours.jpg';
     $beanie1->id = 44;
+    $beanie1->sizes = [
+        'S', 'M', 'L', 'XL'
+    ];
 
     $beanie2 = new Beanie();
     $beanie2->name = 'Bonnet en laine et cachemire';
@@ -25,6 +31,9 @@
     $beanie2->description = $description;
     $beanie2->image = 'angora.jpg';
     $beanie2->id = 31;
+    $beanie1->sizes = [
+        'L', 'XL'
+    ];
 
     $beanie3 = new Beanie();
     $beanie3->name = 'Bonnet arc-en-ciel';
@@ -32,6 +41,9 @@
     $beanie3->description = $description;
     $beanie3->image = 'casquette.jpg';
     $beanie3->id = 666;
+    $beanie1->sizes = [
+        'S', 'M', 'XL'
+    ];
 
     $mesProduits = [
         0 => $beanie0,

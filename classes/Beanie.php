@@ -11,6 +11,12 @@ declare(strict_types=1);
 
 class Beanie
 {
+    const AVAILABLE_SIZES = ['S', 'M', 'L', 'XL'];
+    const AVAILABLE_MATERIALS = [
+        'wool' => 'Laine',
+        'cashmere' => 'Cachemire'
+    ];
+
     /**
      * @var int
      */
@@ -47,6 +53,11 @@ class Beanie
     public $materials = [];
 
     /**
+     * @var array
+     */
+    public $sizes = [];
+
+    /**
      * Le contructeur de notre classe Beanie, il va être appelé quand on va faire :
      * $bonnet = new Beanie();
      *
@@ -76,5 +87,10 @@ class Beanie
     {
         $this->price = $prixTTC;
         $this->priceHT = $prixTTC / 1.2;
+    }
+
+    public function hasSize($size): bool
+    {
+        return in_array($size, $this->sizes);
     }
 }

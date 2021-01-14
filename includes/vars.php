@@ -7,42 +7,64 @@
 
     $beanie0 = new Beanie();
     $beanie0->name = 'Bonnet en laine';
-    $beanie0->price = 10;
+    $beanie0->setPrice(10);
     $beanie0->description = $description;
     $beanie0->image = 'laine.webp';
     $beanie0->id = 42;
     $beanie0->sizes = [
-        'S', 'M'
+        'S',
+        'M'
+    ];
+    $beanie0->materials = [
+        'wool',
     ];
 
     $beanie1 = new Beanie();
     $beanie1->name = 'Bonnet en laine bio';
-    $beanie1->price = 14;
+    $beanie1->setPrice(14);
     $beanie1->description = $description;
     $beanie1->image = 'ours.jpg';
     $beanie1->id = 44;
     $beanie1->sizes = [
-        'S', 'M', 'L', 'XL'
+        'S',
+        'M',
+        'L',
+        'XL',
+    ];
+    $beanie1->materials = [
+        'wool',
     ];
 
     $beanie2 = new Beanie();
     $beanie2->name = 'Bonnet en laine et cachemire';
-    $beanie2->price = 20;
+    $beanie2->setPrice(20);
     $beanie2->description = $description;
     $beanie2->image = 'angora.jpg';
     $beanie2->id = 31;
-    $beanie1->sizes = [
-        'L', 'XL'
+    $beanie2->sizes = [
+        'L',
+        'XL',
+    ];
+    $beanie2->materials = [
+        'wool',
+        'cashmere',
     ];
 
     $beanie3 = new Beanie();
     $beanie3->name = 'Bonnet arc-en-ciel';
-    $beanie3->price = 12;
+    $beanie3->setPrice(12);
     $beanie3->description = $description;
     $beanie3->image = 'casquette.jpg';
     $beanie3->id = 666;
-    $beanie1->sizes = [
-        'S', 'M', 'XL'
+    $beanie3->sizes = [
+        'S',
+        'M',
+        'XL',
+    ];
+    $beanie3->materials = [
+        'wool',
+        'cashmere',
+        'silk',
     ];
 
     $mesProduits = [

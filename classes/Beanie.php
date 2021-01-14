@@ -11,10 +11,14 @@ declare(strict_types=1);
 
 class Beanie
 {
+    /** @var array */
     const AVAILABLE_SIZES = ['S', 'M', 'L', 'XL'];
+
+    /** @var array */
     const AVAILABLE_MATERIALS = [
-        'wool' => 'Laine',
-        'cashmere' => 'Cachemire'
+        'wool'     => 'Laine',
+        'cashmere' => 'Cachemire',
+        'silk'     => 'Soie',
     ];
 
     /**
@@ -89,8 +93,31 @@ class Beanie
         $this->priceHT = $prixTTC / 1.2;
     }
 
-    public function hasSize($size): bool
+    /**
+     * On vérifie si la propriété size de notre object contient la valeur $size demandé
+     * La documentation de in_array() : https://www.php.net/manual/fr/function.in-array.php
+     *
+     * @param string $size
+     *
+     * @return bool
+     */
+    public function hasSize(string $size): bool
     {
+        // On profite que in_array renvoie un booléen pour en retourner directement la valeur
         return in_array($size, $this->sizes);
+    }
+
+    /**
+     * On vérifie si la propriété material de notre object contient la valeur $material demandé
+     * La documentation de in_array() : https://www.php.net/manual/fr/function.in-array.php
+     *
+     * @param string $material
+     *
+     * @return bool
+     */
+    public function hasMaterial(string $material): bool
+    {
+        // On profite que in_array renvoie un booléen pour en retourner directement la valeur
+        return in_array($material, $this->materials);
     }
 }

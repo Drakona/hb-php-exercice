@@ -44,10 +44,10 @@ function afficheProduit(Beanie $produit)
             '.$produit->name.
         '</td>
         <td>
-            '.$produit->priceHT.'€
+            '.number_format($produit->priceHT, 2, ',', ' ').'€
         </td>
         <td style="color:'.$color.'">
-            '.$produit->price.'€
+            '.number_format($produit->price, 2, ',', ' ').'€
         </td>
         <td>
             '.$produit->description.'
